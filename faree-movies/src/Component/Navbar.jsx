@@ -17,12 +17,12 @@ const Navbar = () => {
               <h1 className="text-2xl">Faree</h1>
             </div>
             <nav className="flex flex-row hidden md:flex justify-between w-2/5 list-none">
-              <li>Home</li>
-              <li>About</li>
-              <li>Movies</li>
-              <li>Contact</li>
+              <li className="cursor-pointer">Home</li>
+              <li className="cursor-pointer">About</li>
+              <li className="cursor-pointer">Movies</li>
+              <li className="cursor-pointer">Contact</li>
             </nav>
-            <button className="p-2 rounded-xl hidden md:flex bg-amber-500">
+            <button className="p-2 rounded-xl hidden md:flex hover:duration-500 bg-cyan-700 hover:bg-blue-500">
               Get Started
             </button>
 
