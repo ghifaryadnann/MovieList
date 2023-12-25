@@ -4,6 +4,7 @@ import Navbar from "./Component/Navbar"
 import Trailers from "./Component/Trailers"
 import About from "./Component/About"
 import Footers from "./Component/Footers"
+import NowPlaying from "./Component/NowPlaying"
 
 
 const App = () => {
@@ -22,9 +23,13 @@ const App = () => {
         <div id="trailers">
           <Trailers/>
         </div>
+        <div id="nowplaying">
+          <NowPlaying/>
+        </div>
         <div id="about">
           <About/>
         </div>
+        
         
       </main>
       <div id="contact">

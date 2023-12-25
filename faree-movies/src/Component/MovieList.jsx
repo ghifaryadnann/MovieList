@@ -6,6 +6,7 @@ import "swiper/css/navigation";
 import { EffectCoverflow, Pagination, Navigation } from "swiper/modules";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import Swal from "sweetalert2";
 
 
 const MovieList = () => {
@@ -53,7 +54,98 @@ const MovieList = () => {
     }
   }
 
+  const loadingSearch = () => {
+    let timerInterval;
+Swal.fire({
+  title: "Film Kamu Lagi Di Cari Nih!",
+  html: "sebentar lagiii <b></b> detik",
+  timer: 4000,
+  timerProgressBar: true,
+  didOpen: () => {
+    Swal.showLoading();
+    const timer = Swal.getPopup().querySelector("b");
+    timerInterval = setInterval(() => {
+      timer.textContent = `${Swal.getTimerLeft()}`;
+    }, 100);
+  },
+  willClose: () => {
+    clearInterval(timerInterval);
+  }
+}).then((result) => {
+  /* Read more about handling dismissals below */
+  if (result.dismiss === Swal.DismissReason.timer) {
+    console.log("I was closed by the timer");
+  }
+});
+  }
 
+  const handleButton = () => {
+    const swalWithBootstrapButtons = Swal.mixin({
+      customClass: {
+        confirmButton: "bg-blue-600 p-4 text-white ms-3 hover:bg-blue-400 rounded-2xl",
+        cancelButton: "bg-red-600 hover:bg-red-400 p-4 text-white ms-3 rounded-2xl"
+      },
+      buttonsStyling: false
+    });
+    swalWithBootstrapButtons.fire({
+      title: "Eitss, belum bisa nonton 😅",
+      text: "Follow dulu ig aku ka @ghifaryadnan biar bisa nonton gratis hehe",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yaudah iya",
+      cancelButtonText: "Enggah ah males",
+      reverseButtons: true
+    }).then((result) => {
+      if (result.isConfirmed) {
+        Swal.fire({
+          title: "Masukin username instagram kamu",
+          input: "text",
+          inputAttributes: {
+            autocapitalize: "off"
+          },
+          showCancelButton: true,
+          confirmButtonText: "Cek Ombak",
+          showLoaderOnConfirm: true,
+          preConfirm: async (login) => {
+            try {
+              const githubUrl = `
+                https://instagram.com/${login}
+              `;
+              const response = await fetch(githubUrl);
+              if (!response.ok) {
+                return Swal.showValidationMessage(`
+                  ${JSON.stringify(await response.json())}
+                `);
+              }
+              return response.json();
+            } catch (error) {
+              Swal.showValidationMessage(`
+                Yah Ketauan : "belum follow ig @ghifaryadnan"
+              `);
+            }
+          },
+          allowOutsideClick: () => !Swal.isLoading()
+        }).then((result) => {
+          if (result.isConfirmed) {
+            Swal.fire({
+              title: `${result.value.login}'s avatar`,
+              imageUrl: result.value.avatar_url
+            });
+          }
+        });
+      } else if (
+        /* Read more about handling dismissals below */
+        result.dismiss === Swal.DismissReason.cancel
+      ) {
+        swalWithBootstrapButtons.fire({
+          title: "Kenapa gamau follow ka😓",
+          text: "Jadi gabisa nonton kan :)",
+          icon: "error"
+
+        });
+      }
+    });
+  }
   
 
   
@@ -69,7 +161,7 @@ const MovieList = () => {
             placeholder="search your movie..."
             className="  sm:ms-0 w-[350px] me-1 text-sm sm:w-[400px] rounded-2xl p-2 text-black"
           ></input>
-          <button  className=" bg-cyan-700 hover:bg-blue-500 hover:duration-300 p-2  rounded-2xl">
+          <button onClick={loadingSearch}  className=" bg-cyan-700 hover:bg-blue-500 hover:duration-300 p-2  rounded-2xl">
             Search
           </button>
         </div>
@@ -113,7 +205,7 @@ const MovieList = () => {
                         <h1 className=" font-bold sm:text-[40px] shadow-xl">
                           {movie.title}
                         </h1>
-                        <button className="text-sm sm:p-2 sm:my-1 sm:text-xl rounded-2xl p-1 bg-red-400">
+                        <button onClick={handleButton} className="text-sm sm:p-2 sm:my-1 sm:text-xl rounded-2xl hover:duration-300 p-1 bg-red-400 hover:bg-red-700">
                           <span>
                             <h1 className="text-[10px] sm:text-xl">
                               Watch Now ▶

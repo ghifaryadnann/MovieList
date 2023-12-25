@@ -41,9 +41,12 @@ const Navbar = () => {
               
               
             </nav>
-            <button className="p-2 rounded-xl hidden md:flex hover:duration-500 bg-cyan-700 hover:bg-blue-500">
+            <Link onClick={closeMenu}   to="nowplaying" spy={true} smooth={true} duration={500}>
+             <button className="p-2 rounded-xl hidden md:flex hover:duration-500 bg-cyan-700 hover:bg-blue-500">
               Get Started
             </button>
+            </Link>
+           
 
             <div className="cursor-pointer md:hidden">
               {menu ? (
@@ -78,9 +81,12 @@ const Navbar = () => {
               <Link onClick={closeMenu}   to="contact" spy={true} smooth={true} duration={500}>
               <li className=" my-2 cursor-pointer hover:text-cyan-600">Contact</li>
               </Link>
-          <button className="p-2 mt-2 rounded-xl bg-cyan-700 hover:bg-blue-500">
+              <Link onClick={closeMenu}   to="nowplaying" spy={true} smooth={true} duration={500}>
+               <button  className="p-2 mt-2 rounded-xl bg-cyan-700 hover:bg-blue-500">
             Get Started
           </button>
+              </Link>
+         
         </nav>
       </div>
     </>

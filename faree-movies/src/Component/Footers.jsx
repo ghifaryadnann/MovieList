@@ -17,7 +17,7 @@ function Footers() {
           </Footer.LinkGroup>
         </div>
         <Footer.Divider />
-        <Footer.Copyright  by="Faree™" year={2023} />
+        <Footer.Copyright  by="Ghifary Adnan™" year={2023} />
       </div>
     </Footer>
   );
