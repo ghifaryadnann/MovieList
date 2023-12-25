@@ -154,19 +154,19 @@ Swal.fire({
     <>
       <div className="container  m-auto   my-2">
         <div className="m-auto flex items-center sm:justify-start justify-center p-2">
-          <input data-aos="fade-right"
+          <input
             onChange={({ target }) => {
               search(target.value);
             }}
             placeholder="search your movie..."
             className="  sm:ms-0 w-[350px] me-1 text-sm sm:w-[400px] rounded-2xl p-2 text-black"
           ></input>
-          <button data-aos="fade-up" onClick={loadingSearch}  className=" bg-cyan-700 hover:bg-blue-500 hover:duration-300 p-2  rounded-2xl">
+          <button onClick={loadingSearch}  className=" bg-cyan-700 hover:bg-blue-500 hover:duration-300 p-2  rounded-2xl">
             Search
           </button>
         </div>
 
-        <h1 data-aos="fade-left" className="text-2xl ms-2 my-5">All Movie List</h1>
+        <h1 className="text-2xl ms-2 my-5">All Movie List</h1>
 
         <Swiper
           spaceBetween={10}
@@ -188,11 +188,11 @@ Swal.fire({
           {movie !== null &&
             movie.map((movie, index) => {
               return (
-                <SwiperSlide 
+                <SwiperSlide
                   className=" flex items-center justify-center"
                   key={index}
                 >
-                  <div data-aos="fade-left" className=" w-screen flex">
+                  <div className=" w-screen flex">
                     <img
                       src={`${import.meta.env.VITE_BASE_IMAGE}/${
                         movie.poster_path
@@ -226,7 +226,7 @@ Swal.fire({
             })}
 
           <div className="slider-controler bg-black mt-[40px] ">
-            <div data-aos="fade-left" className="swiper-pagination "></div>
+            <div className="swiper-pagination "></div>
           </div>
         </Swiper>
       </div>

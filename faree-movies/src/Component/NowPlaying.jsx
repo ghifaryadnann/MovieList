@@ -149,7 +149,7 @@ const NowPlaying = () => {
     <div className="container  m-auto   my-2">
         
 
-        <h1 data-aos="fade-left" className="text-2xl ms-2 my-5">Now Playing</h1>
+        <h1 className="text-2xl ms-2 my-5">Now Playing</h1>
 
         <Swiper
           spaceBetween={10}
@@ -171,11 +171,11 @@ const NowPlaying = () => {
           {movie !== null &&
             movie.map((movie, index) => {
               return (
-                <SwiperSlide 
+                <SwiperSlide
                   className=" flex items-center justify-center"
                   key={index}
                 >
-                  <div className=" w-screen flex" data-aos="fade-right">
+                  <div className=" w-screen flex">
                     <img
                       src={`${import.meta.env.VITE_BASE_IMAGE}/${
                         movie.poster_path
@@ -209,7 +209,7 @@ const NowPlaying = () => {
             })}
 
           <div className="slider-controler bg-black mt-[40px] ">
-            <div data-aos="fade-left" className="swiper-pagination "></div>
+            <div className="swiper-pagination "></div>
           </div>
         </Swiper>
       </div>

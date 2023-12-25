@@ -44,7 +44,7 @@ const Trailers = () => {
 
   return (
     <div className="container  m-auto    my-2">
-        <h1 data-aos="fade-left" className="text-2xl ms-2 my-5">Lastest Trailer Movies</h1>
+        <h1 className="text-2xl ms-2 my-5">Lastest Trailer Movies</h1>
     
     <Swiper
         //   spaceBetween={20}
@@ -65,11 +65,11 @@ const Trailers = () => {
         {...params}
         >
     <div>
-     
+      <h2>Movie Video Carousel</h2>
       
         {videos.map((video) => (
            
-          <SwiperSlide data-aos="fade-right" className=" flex items-center justify-center" key={video.id}>
+          <SwiperSlide className=" flex items-center justify-center" key={video.id}>
             <iframe
               title={video.name}
               width="100%"
@@ -83,7 +83,7 @@ const Trailers = () => {
      
     </div>
     <div className="slider-controler  mt-[40px] ">
-            <div data-aos="fade-left" className="swiper-pagination "></div>
+            <div className="swiper-pagination "></div>
           </div>
      </Swiper>
     </div>
