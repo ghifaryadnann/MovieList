@@ -20,11 +20,16 @@ const MovieList = () => {
       )
       .then((res) => {
         setMovie(res.data.results);
-        console.log(res.data);
+        console.log(res.data)
+       
       })
       .catch((error) => {
         console.log(error);
       });
+
+      axios.get
+
+      
   }, []);
 
   const search = async (q) => {
@@ -33,6 +38,21 @@ const MovieList = () => {
       setMovie(query.results);
     }
   };
+
+  const handleRating = (vote_average) => {
+    if (vote_average >= 8){
+      return '⭐⭐⭐⭐⭐'
+    }else if(vote_average >=7 && vote_average < 8){
+      return "⭐⭐⭐⭐"
+    }else if(vote_average >=6 && vote_average <7){
+      return "⭐⭐⭐"
+    }else if(vote_average >=5 && vote_average <6){
+      return "⭐⭐"
+    }else{
+      return "⭐"
+    }
+  }
+
 
   
 
@@ -54,22 +74,22 @@ const MovieList = () => {
           </button>
         </div>
 
-        <h1 className="text-2xl ms-2 my-5">Popular Movies</h1>
+        <h1 className="text-2xl ms-2 my-5">All Movie List</h1>
 
         <Swiper
           spaceBetween={10}
           slidesPerView={3}
-          onSlideChange={() => console.log("slide change")}
+          
           onSwiper={(swiper) => console.log(swiper)}
           grabCursor={true}
           centeredSlides={true}
           loop={true}
           pagination={{ el: ".swiper-pagination", clickable: true }}
-          navigation={{
-            nextEl: ".swiper-button-next",
-            prevEl: ".swiper-button-prev",
-            clickable: true,
-          }}
+          // navigation={{
+          //   nextEl: ".swiper-button-next",
+          //   prevEl: ".swiper-button-prev",
+          //   clickable: true,
+          // }}
           modules={[EffectCoverflow, Pagination, Navigation]}
           className="swiper_container"
         >
@@ -101,7 +121,7 @@ const MovieList = () => {
                           </span>
                         </button>
                         <li className="text-[10px] sm:text-[20px]">
-                          Rating : {movie.vote_average}
+                          Rating : {handleRating(movie.vote_average)}
                         </li>
                         <li className="text-[10px] sm:text-[20px]">
                           Realse : {movie.release_date}
@@ -118,6 +138,8 @@ const MovieList = () => {
           </div>
         </Swiper>
       </div>
+
+    
 
       {/* <div className="flex flex-row w-full">
     

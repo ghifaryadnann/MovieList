@@ -5,3 +5,4 @@ export const searchMoviesFilm = async (query) => {
     const response = await axios.get(url)
     return response.data
   }
+

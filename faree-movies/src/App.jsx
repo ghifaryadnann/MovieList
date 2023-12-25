@@ -1,6 +1,9 @@
 import Home from "./Component/Home"
 import MovieList from "./Component/MovieList"
 import Navbar from "./Component/Navbar"
+import Trailers from "./Component/Trailers"
+import About from "./Component/About"
+import Footers from "./Component/Footers"
 
 
 const App = () => {
@@ -10,15 +13,24 @@ const App = () => {
 
    
       <main>
-        <div>
+        <div id="home">
           <Home/>
         </div>
-        <div>
+        <div id="movielist">
           <MovieList/>
+        </div>
+        <div id="trailers">
+          <Trailers/>
+        </div>
+        <div id="about">
+          <About/>
         </div>
         
       </main>
-    
+      <div id="contact">
+        <Footers/>
+      </div>
+      
     </>
   )
 }
